@@ -11,7 +11,7 @@ class   IONISAuthentication
   def initialize sshUserName, sshUserPass, forceUpdate = false
     @tmpDir = '/tmp/ionis_auth/'
     @lifeTime = 3600
-    @lstStudent = Hash.new("Go Fish")
+    @lstStudent = Hash.new
     Dir.mkdir @tmpDir if !File.directory? @tmpDir
     if !File.exist? File.join(@tmpDir, 'ppp.blowfish') or forceUpdate == true
       begin
@@ -28,27 +28,42 @@ class   IONISAuthentication
     hFile = File.new (File.join @tmpDir, 'ppp.blowfish'), 'r'
     while line = hFile.gets
       line = line.split ' '
-      @lstStudent[line[0]] = { :password => line[1] }
+      @lstStudent[line[0]] = Hash.new
+      @lstStudent[line[0]][:password]= line[1]
+    end
+    hFile.close
+    hFile = File.new (File.join @tmpDir, 'passwd'), 'r'
+    while line = hFile.gets
+      line = line.split ':'
+      if @lstStudent[line[0]]
+        @lstStudent[line[0]][:uid] = line[2]
+        @lstStudent[line[0]][:gid] = line[3]
+        if line[4].length > 0
+          line[4] = line[4].split ' '
+          line[4][0].capitalize!
+          line[4][1].upcase!
+          @lstStudent[line[0]][:fullname] = "#{line[4][0]} #{line[4][1]}"
+        end
+      end
+    end
+    hFile.close
+    hFile = File.new (File.join @tmpDir, 'location'), 'r'
+    while line = hFile.gets
+      line = line.split ':'
+      if @lstStudent[line[0]]
+        @lstStudent[line[0]][:city] = line[1].strip
+      end
     end
     hFile.close
   end
 
   def chkPass userName, userPass
     false if @lstStudent == nil
-    return true if BCrypt::Engine.hash_secret(userPass , @lstStudent[userName][:password]) == @lstStudent[userName][:password]
+    return @lstStudent[userName] if BCrypt::Engine.hash_secret(userPass , @lstStudent[userName][:password]) == @lstStudent[userName][:password]
     false
   end
 
-  def getPromo userName
+  def getUser userName
     false if @lstStudent == nil
   end
-
-  def getSchool userName
-    false if @lstStudent == nil
-  end
-
-  def getGroup userName
-    false if @lstStudent == nil
-  end
-
 end
