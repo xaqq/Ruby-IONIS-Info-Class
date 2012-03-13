@@ -9,4 +9,7 @@ Gem::Specification.new do |s|
   s.files       = ["ionis_auth.rb"]
   s.homepage    =
     'https://github.com/corbeau-web/Ruby-IONIS-Info-Class'
+  s.add_dependency('net-ssh', '>= 2.3.0')
+  s.add_dependency('net-scp', '>= 1.0.4')
+  s.add_dependency('bcrypt-ruby', '>= 3.0.1')
 end

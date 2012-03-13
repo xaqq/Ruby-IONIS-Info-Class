@@ -1,4 +1,5 @@
 require 'rubygems'
+require 'tmpdir'
 require 'net/ssh'
 require 'net/scp'
 require 'bcrypt'
@@ -9,7 +10,7 @@ class   IONISAuthentication
   @lstStudent = nil
 
   def initialize sshUserName, sshUserPass, forceUpdate = false
-    @tmpDir = '/tmp/ionis_auth/'
+    @tmpDir = File.join Dir.tmpdir, 'ionis_auth/'
     @lifeTime = 3600
     @lstStudent = Hash.new
     Dir.mkdir @tmpDir if !File.directory? @tmpDir
