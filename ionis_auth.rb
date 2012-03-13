@@ -29,7 +29,10 @@ class   IONISAuthentication
     while line = hFile.gets
       line = line.split ' '
       @lstStudent[line[0]] = Hash.new
-      @lstStudent[line[0]][:password]= line[1]
+      if line[0]
+        @lstStudent[line[0]][:login]= line[0]
+        @lstStudent[line[0]][:password]= line[1]
+      end
     end
     hFile.close
     hFile = File.new (File.join @tmpDir, 'passwd'), 'r'
@@ -65,5 +68,6 @@ class   IONISAuthentication
 
   def getUser userName
     false if @lstStudent == nil
+    return @lstStudent[userName]
   end
 end
