@@ -1,0 +1,72 @@
+= IONIS::Authentication
+
+* https://github.com/corbeau-web/Ruby-IONIS-Info-Class
+
+== DESCRIPTION:
+
+IONIS::Authentication is a pure-Ruby implementation of the original PHP IONIS Class. This allow you to implement authentication using IONIS login and PPP password.
+
+== FEATURES/PROBLEMS:
+
+* Provide password verification
+* Get user informations like Login, UID, GID, City, Avatar URL
+
+== SYNOPSIS:
+
+In a nutshell:
+
+  require 'ionisauthentication'
+
+  begin
+    hIonis = IONIS::Authentication.new 'login_l', 'unix_password'
+    puts hIonis.chkPass 'login_l', 'ppp_password'
+    puts hIonis.getUser 'meyer_t'
+    puts hIonis.getUser 'adam_d'
+    puts hIonis.getUser 'not_exist'
+    puts hIonis.getUser nil
+    puts hIonis.getUser -1
+  rescue IONIS::Exception::HostNotFound => e
+    puts e.reason
+  rescue IONIS::Exception::ConnectionRefused => e
+    puts e.reason
+  rescue IONIS::Exception::BadAuthentication => e
+    puts e.reason
+  rescue IONIS::Exception::FileGrabber => e
+    puts e.reason
+  end
+
+
+== REQUIREMENTS:
+
+* Net::SSH 2
+* Net::SCP 1
+* bcrypt 3
+
+== INSTALL:
+
+* gem install ionisauthentication (might need sudo privileges)
+
+== LICENSE:
+
+(The MIT License)
+
+Copyright (c) 2012 Thibault MEYER <meyer.thibault@hotmail.fr>
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
