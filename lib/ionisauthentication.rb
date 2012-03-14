@@ -11,10 +11,6 @@ module  IONIS
     @lifeTime = nil
     @lstStudent = nil
 
-    def logger
-      ActionController::Base.logger
-    end
-
     def initialize sshUserName, sshUserPass, forceUpdate = false
       @tmpDir = File.join Dir.tmpdir, 'ionis_auth/'
       @lifeTime = 3600
