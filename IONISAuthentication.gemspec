@@ -1,12 +1,12 @@
 Gem::Specification.new do |s|
-  s.name         = 'ionisauthentication'
-  s.version      = '0.0.4'
-  s.date         = '2012-03-14'
-  s.summary      = "IONIS Authentication"
-  s.description  = "A Ruby Class to get informations about students in Ionis group"
+  s.name         = 'ionis'
+  s.version      = '0.0.5'
+  s.date         = '2012-03-18'
+  s.summary      = "IONIS Epitech/Epita class set"
+  s.description  = "A Ruby set of Classes to get informations about students in Ionis group"
   s.authors      = ["Thibault MEYER"]
   s.email        = 'meyer.thibault@hotmail.fr'
-  s.files        = ["lib/ionisauthentication.rb", "lib/ionisexceptions.rb", "README.rdoc"]
+  s.files        = ["lib/ionis.rb", "lib/ionisauthentication.rb", "lib/ionisnetsoul.rb", "lib/ionisexceptions.rb", "README.rdoc"]
   s.rdoc_options = ["--line-numbers", "--inline-source", "--title", "Net-scp", "--main", "README.rdoc"]
   s.homepage     = 'https://github.com/corbeau-web/Ruby-IONIS-Info-Class'
   s.add_dependency('net-ssh', '>= 2.3.0')

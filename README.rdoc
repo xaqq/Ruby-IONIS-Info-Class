@@ -1,30 +1,35 @@
-= IONIS::Authentication
+= IONIS
 
 * https://github.com/corbeau-web/Ruby-IONIS-Info-Class
 
 == DESCRIPTION:
 
 IONIS::Authentication is a pure-Ruby implementation of the original PHP IONIS Class. This allow you to implement authentication using IONIS login and PPP password.
+IONIS::Netsoul help you to get information about online students.
 
 == FEATURES/PROBLEMS:
 
 * Provide password verification
-* Get user informations like Login, UID, GID, City, Avatar URL
+* Get user informations like Login, UID, GID, City, Avatar URL, State
 
 == SYNOPSIS:
 
 In a nutshell:
 
-  require 'ionisauthentication'
+  require 'ionis'
 
   begin
     hIonis = IONIS::Authentication.new 'login_l', 'unix_password'
     puts hIonis.chkPass 'login_l', 'ppp_password'
     puts hIonis.getUser 'meyer_t'
-    puts hIonis.getUser 'adam_d'
+    puts hIonis.getUser 'cassan_c'
     puts hIonis.getUser 'not_exist'
     puts hIonis.getUser nil
     puts hIonis.getUser -1
+
+    hNetsoul = IONIS::Netsoul.new
+    puts hNetsoul.getUser 'meyer_t'
+    puts hNetsoul.getUser 'adam_p'
   rescue IONIS::Exception::HostNotFound => e
     puts e.reason
   rescue IONIS::Exception::ConnectionRefused => e
@@ -44,7 +49,7 @@ In a nutshell:
 
 == INSTALL:
 
-* gem install ionisauthentication (might need sudo privileges)
+* gem install ionis (might need sudo privileges)
 
 == LICENSE:
 
