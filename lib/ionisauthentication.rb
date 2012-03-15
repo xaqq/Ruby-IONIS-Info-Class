@@ -8,12 +8,10 @@ require 'ionisexceptions'
 module  IONIS
   class   Authentication
     @tmpDir = nil
-    @lifeTime = nil
     @lstStudent = nil
 
     def initialize sshUserName, sshUserPass, forceUpdate = false
       @tmpDir = File.join Dir.tmpdir, 'ionis_auth/'
-      @lifeTime = 3600
       @lstStudent = Hash.new
       Dir.mkdir @tmpDir if !File.directory? @tmpDir
       if !File.exist? File.join(@tmpDir, 'ppp.blowfish') or forceUpdate == true
@@ -41,6 +39,7 @@ module  IONIS
         if line[0]
           @lstStudent[line[0]][:login]= line[0]
           @lstStudent[line[0]][:password]= line[1]
+          @lstStudent[line[0]][:picture]= "http://www.epitech.eu/intra/picture/#{line[0]}.jpg"
         end
       end
       hFile.close
