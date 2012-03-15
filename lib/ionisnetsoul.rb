@@ -11,7 +11,6 @@ module IONIS
     def initialize
       @tmpDir = File.join Dir.tmpdir, 'ionis_auth/nsUser'
       if !File.exist? @tmpDir or (File.mtime(@tmpDir).to_i + 300) < Time.now.to_i 
-        puts 'regen file'
         begin
           hSock = TCPSocket.open('ns-server.epita.fr', 4242)
           line = hSock.gets
