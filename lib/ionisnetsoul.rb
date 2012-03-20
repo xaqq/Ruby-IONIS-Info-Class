@@ -46,5 +46,19 @@ module IONIS
       @usrData[login]
     end
 
+    def size
+      return @usrData.size
+    end
+
+    def getAllOnlineUsers
+      return false if !@usrData
+      @usrData[login]
+    end
+
+    def online? login
+      return false if !@usrData
+      return true if @usrData[login]
+      false
+    end
   end
 end
