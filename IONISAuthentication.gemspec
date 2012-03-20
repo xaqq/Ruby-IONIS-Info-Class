@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name         = 'ionis'
-  s.version      = '0.0.6'
-  s.date         = '2012-03-15'
+  s.version      = '0.0.7'
+  s.date         = '2012-03-20'
   s.summary      = "IONIS Epitech/Epita class set"
   s.description  = "A Ruby set of Classes to get informations about students in Ionis group"
   s.authors      = ["Thibault MEYER"]
