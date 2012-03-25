@@ -9,6 +9,8 @@ module IONIS
     @usrData = nil
 
     def initialize
+      @tmpDir = File.join Dir.tmpdir, 'ionis_auth'
+      Dir.mkdir @tmpDir if !File.directory? @tmpDir
       @tmpDir = File.join Dir.tmpdir, 'ionis_auth/nsUser'
       if !File.exist? @tmpDir or (File.mtime(@tmpDir).to_i + 300) < Time.now.to_i 
         begin
