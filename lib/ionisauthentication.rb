@@ -10,6 +10,11 @@ module  IONIS
     @tmpDir = nil
     @lstStudent = nil
 
+	# Instance of Authentication - sshUserName and sshUserPass are needed to update IONIS Auth. file from IONIS Server.
+	# @param [String] sshUserName IONIS Login
+	# @param [String] sshUserPass Unix password
+	# @param [Boolean] forceUpdate Force update of IONIS Auth. files
+	# @return [Authentication] A new instance of Authentication
     def initialize sshUserName, sshUserPass, forceUpdate = false
       @tmpDir = File.join Dir.tmpdir, 'ionis_auth/'
       @lstStudent = Hash.new
@@ -68,12 +73,19 @@ module  IONIS
       hFile.close
     end
 
+	# Check PPP Password of given user
+	# @param [String] userName IONIS Login
+	# @param [String] userPass PPP Password
+	# @return [Mixed] Informations about given user in Array if password if correct. Otherwize: false
     def chkPass userName, userPass
       false if @lstStudent == nil
       return @lstStudent[userName] if BCrypt::Engine.hash_secret(userPass , @lstStudent[userName][:password]) == @lstStudent[userName][:password]
       false
     end
 
+	# Get informations about one user
+	# @param [String] userName IONIS Login
+	# @return [Hash] Information about given user in Array. If User doesn't exist, the returned array will be empty
     def getUser userName
       false if @lstStudent == nil
       return @lstStudent[userName]

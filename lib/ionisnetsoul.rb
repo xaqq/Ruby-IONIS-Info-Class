@@ -8,6 +8,8 @@ module IONIS
     @tmpDir = nil
     @usrData = nil
 
+	# Instance of Netsoul
+	# @return [Netsoul] A new instance of Netsoul
     def initialize
       @tmpDir = File.join Dir.tmpdir, 'ionis_auth'
       Dir.mkdir @tmpDir if !File.directory? @tmpDir
@@ -43,20 +45,30 @@ module IONIS
       end
     end
 
+	# Get informations about given connected user
+	# @param [String] login IONIS Login
+	# @return [Hash] Information about given user in Array. If User doesn't exist, the returned array will be empty
     def getUser login
       return false if !@usrData
       @usrData[login]
     end
 
+	# Get number of connected user(s)
+	# @return [fixnum] Number of connected user(s)
     def size
       return @usrData.size
     end
 
+	# Get informations about all connected user
+	# @return [Hash] Information about given user in Array. If no-one was connected, the returned array will be empty
     def getAllOnlineUsers
       return false if !@usrData
       @usrData[login]
     end
 
+	# Check if user is connected
+	# @param [String] login IONIS Login
+	# @return [Boolean] True if user is Online, otherwize: false
     def online? login
       return false if !@usrData
       return true if @usrData[login]
