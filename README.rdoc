@@ -29,7 +29,7 @@ In a nutshell:
 
     hNetsoul = IONIS::Netsoul.new
     puts hNetsoul.getUser 'meyer_t'
-    puts hNetsoul.getUser 'adam_p'
+    puts hNetsoul.online? 'adam_p'
   rescue IONIS::Exception::HostNotFound => e
     puts e.reason
   rescue IONIS::Exception::ConnectionRefused => e
