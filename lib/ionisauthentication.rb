@@ -37,7 +37,7 @@ module  IONIS
         end
       end
 
-      hFile = File.new ((File.join @tmpDir, 'ppp.blowfish'), 'r')
+      hFile = File.new((File.join @tmpDir, 'ppp.blowfish'), 'r')
       while line = hFile.gets
         line = line.split ' '
         @lstStudent[line[0]] = Hash.new
@@ -48,7 +48,7 @@ module  IONIS
         end
       end
       hFile.close
-      hFile = File.new ((File.join @tmpDir, 'passwd'), 'r')
+      hFile = File.new((File.join @tmpDir, 'passwd'), 'r')
       while line = hFile.gets
         line = line.split ':'
         if @lstStudent[line[0]]
@@ -63,7 +63,7 @@ module  IONIS
         end
       end
       hFile.close
-      hFile = File.new ((File.join @tmpDir, 'location'), 'r')
+      hFile = File.new((File.join @tmpDir, 'location'), 'r')
       while line = hFile.gets
         line = line.split ':'
         if @lstStudent[line[0]]
